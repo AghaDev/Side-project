@@ -49,7 +49,7 @@ class memeController{
     static async deleteMeme(req, res){
         try{
             const meme = await Meme.findByPk(req.params.id);
-            return res.status(200).json(meme);
+            res.status(200).json(meme);
             await meme.destroy();
         }
         catch(err){
@@ -58,21 +58,13 @@ class memeController{
     }
 
     static async updateMeme(req, res){
-        const {userId} = req.body;
         const imageTester = req.body;
         // console.log(req.body)
         try{
-            if(!userId){
-                return res.status(500).json("No user Id entered");
-            }
             if(req.file && req.file.path){
                 imageTester.image = req.file.path;
             }
-            const meme = await Meme.findByPk(req.params.id);
-            if(userId != meme.UserId){
-             return res.status(500).json("unauthorized user");
-            
-            }   
+            const meme = await Meme.findByPk(req.params.id);    
             await meme.update(imageTester);
             return res.status(200).json(meme);
             }

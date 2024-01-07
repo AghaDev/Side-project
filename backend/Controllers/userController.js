@@ -1,11 +1,12 @@
 import User from '../Models/userModel.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import Meme from '../Models/memeModel.js'
 
 class userController{
     static async getAllUsers(req,res){
     try{
-        const users = await User.findAll();
+        const users = await User.findAll({include:[{model:Meme}]});
         res.status(200).json(users);
     }
     catch(err){
@@ -15,7 +16,7 @@ class userController{
 
     static async getUser(req,res){
         try{
-        const user = await User.findByPk(req.params.id);
+        const user = await User.findByPk(req.params.id, {include:[{model:Meme}]});
         res.status(200).json(user);
     }
     catch(err){
@@ -63,17 +64,20 @@ static async loginUser(req,res){
           res.status(200).json({
           id: foundUser.id,
           username: foundUser.username,
-          accessToken: token,})
-        }
+          accessToken: token,
+        })
+    }
 
         else {
             res.status(401).json({ alert: "unauthorized login" });
         }
-    }
+    
+}
     catch (err) {
         res.status(500).json({error: err.message});
     }
 }
+
 
 static async updateUser(req,res){
     try{

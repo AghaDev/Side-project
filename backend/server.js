@@ -5,8 +5,11 @@ import cors from "cors";
 import memeRoutes from "../backend/Routes/memeRoute.js";
 import userRoutes from "../backend/Routes/userRoute.js";
 
+
 const app = express();
 app.use(express.json());
+app.use('/uploads', express.static('uploads'));
+
 
 app.use(cors());
 app.use('/meme', memeRoutes);
