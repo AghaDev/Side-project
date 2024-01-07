@@ -57,7 +57,7 @@ const Register = () => {
           </div>
         </div>
         <div className="col-sm-6 px-0 d-none d-sm-block">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp" alt="Login image" className="w-75 h-75" style={{objectFit: 'cover', objectPosition: 'left'}} />
+          <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="Login image" className="w-100 h-100" style={{objectFit: 'cover', objectPosition: 'left'}} />
         </div>
       </div>
     </div>
