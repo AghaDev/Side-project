@@ -16,10 +16,14 @@ const UserMemes = () => {
     formData.append('image', image);
   }
 
-
+  const authToken = localStorage.getItem('token');
+  console.log("muhieddin", authToken)
   
       useEffect(() => {
-          axios.get(`http://localhost:4000/user/${data.id}`)
+          axios.get(`http://localhost:4000/user/${data.id}`, {headers:{
+    'Authorization': `Bearer ${authToken}`
+          }
+          })
           .then((response) => {
               setMemes(response.data)
               console.log(response.data)

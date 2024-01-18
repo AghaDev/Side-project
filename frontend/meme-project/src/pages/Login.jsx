@@ -21,6 +21,7 @@ const Login = () => {
         const response = await axios.post('http://localhost:4000/user/login', userData)
         console.log(response.data)
         setData(response.data)
+        localStorage.setItem('token', response.data.accessToken)
         navigate('/userMemes', {state:{data:response.data}})
         }catch(err){
             console.log(err)
